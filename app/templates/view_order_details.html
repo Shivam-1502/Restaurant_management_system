@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Order Details</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Order ID:</strong> {{ order.orderID }}</p>
+                    <p><strong>Employee:</strong> {{ order.employee.username }}</p>
+                    <p><strong>Customer:</strong> {{ order.customer.name }}</p>
+                    <p><strong>Status:</strong> 
+                        <span class="badge {% if order.status == 'Pending' %}bg-warning{% else %}bg-success{% endif %}">
+                            {{ order.status }}
+                        </span>
+                    </p>
+                    <p><strong>Total Amount:</strong> ₹{{ "%.2f"|format(order.totalAmount) }}</p>
+                </div>
+            </div>
+
+            <h3 class="mt-4">Items in the Order:</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price per Item</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order.items %}
+                        <tr>
+                            <td>{{ item.menu_item.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>₹{{ "%.2f"|format(item.price) }}</td>
+                            <td>₹{{ "%.2f"|format(item.price * item.quantity) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-right"><strong>Total Amount:</strong></td>
+                            <td><strong>₹{{ "%.2f"|format(order.totalAmount) }}</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,433 @@
+/* Card Hover Effects */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard Card Styles */
+.dashboard-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.dashboard-card.bg-primary {
+    background: linear-gradient(45deg, #007bff, #0056b3) !important;
+}
+
+.dashboard-card.bg-success {
+    background: linear-gradient(45deg, #28a745, #1e7e34) !important;
+}
+
+.dashboard-card.bg-warning {
+    background: linear-gradient(45deg, #ffc107, #d39e00) !important;
+}
+
+.dashboard-card.bg-info {
+    background: linear-gradient(45deg, #17a2b8, #117a8b) !important;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card:hover.bg-primary {
+    background: linear-gradient(45deg, #0056b3, #007bff) !important;
+}
+
+.dashboard-card:hover.bg-success {
+    background: linear-gradient(45deg, #1e7e34, #28a745) !important;
+}
+
+.dashboard-card:hover.bg-warning {
+    background: linear-gradient(45deg, #d39e00, #ffc107) !important;
+}
+
+.dashboard-card:hover.bg-info {
+    background: linear-gradient(45deg, #117a8b, #17a2b8) !important;
+}
+
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+
+.dashboard-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-card .card-text {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.dashboard-card .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Button Hover Animations */
+.btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    padding: 8px 20px;
+    font-weight: 600;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Employee Management Button */
+.card.h-100 .card-body .btn-primary {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    border: none;
+    color: white;
+}
+
+.card.h-100 .card-body .btn-primary:hover {
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+/* Menu Management Button */
+.card.h-100 .card-body .btn-success {
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    border: none;
+    color: white;
+}
+
+.card.h-100 .card-body .btn-success:hover {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* View All Button in Recent Orders */
+.card-header .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.card-header .btn-primary:hover {
+    background-color: #4e73df;
+    border-color: #4e73df;
+    box-shadow: 0 4px 15px rgba(78, 115, 223, 0.3);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-danger:hover {
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.btn-warning:hover {
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+/* Table Row Hover Effect */
+.table-hover tbody tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05) !important;
+    transform: scale(1.01);
+}
+
+/* Form Input Focus Effects */
+.form-control {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+    border-color: #80bdff;
+}
+
+/* Alert Animations */
+.alert {
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Navigation Link Hover Effect */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Navigation Links in Header */
+.navbar-nav .nav-link {
+    color: #3498db !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 8px 15px !important;
+    margin: 0 2px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: white !important;
+    background: linear-gradient(45deg, #2980b9, #3498db);
+    border-radius: 5px;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(41, 128, 185, 0.3);
+}
+
+/* Remove any previous dashboard specific styles */
+.navbar-nav a[href="/dashboard"]::after,
+.nav-link::after,
+.navbar-nav a::after {
+    display: none;
+}
+
+/* Admin Dashboard Link Style */
+a[href="/admin/dashboard"] {
+    position: relative;
+    color: #3498db !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a[href="/admin/dashboard"]:hover {
+    background: linear-gradient(45deg, #2980b9, #3498db);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(41, 128, 185, 0.3);
+}
+
+/* Restaurant MS Brand Style */
+.navbar .navbar-brand:first-child {
+    position: relative;
+    color: #3498db !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand:first-child:hover {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Admin Dashboard Brand Style (second navbar-brand) */
+.navbar .navbar-brand:not(:first-child) {
+    position: relative;
+    color: #2c3e50 !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand:not(:first-child):hover {
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+/* Stats Card Animation */
+.stats-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Delete Button Animation */
+.btn-danger {
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Success Message Animation */
+.alert-success {
+    animation: slideInAndFade 0.5s ease-out;
+}
+
+@keyframes slideInAndFade {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Loading Spinner */
+.spinner {
+    display: none;
+}
+
+/* Page Transition */
+.page-content {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Menu Item Price Highlight */
+.price-highlight {
+    transition: color 0.3s ease;
+}
+
+.price-highlight:hover {
+    color: #28a745;
+    transform: scale(1.1);
+}
+
+/* Low Stock Warning Animation */
+.low-stock {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { background-color: rgba(255, 193, 7, 0.1); }
+    50% { background-color: rgba(255, 193, 7, 0.3); }
+    100% { background-color: rgba(255, 193, 7, 0.1); }
+}
+
+/* Footer Styles */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+    text-align: center;
+    border-top: 1px solid #dee2e6;
+    z-index: 1000;
+}
+
+/* Add margin to content to prevent footer overlap */
+.content {
+    margin-bottom: 80px;
+    min-height: calc(100vh - 160px);
+}
+
+/* Management Card Styles */
+.card.h-100 {
+    transition: all 0.3s ease;
+}
+
+.card.h-100:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card.h-100 .card-icon {
+    transition: transform 0.3s ease;
+}
+
+.card.h-100:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.card.h-100 .btn {
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+/* View All Orders Button */
+.card .card-header .btn-primary {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    border: none;
+    color: white;
+}
+
+.card .card-header .btn-primary:hover {
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Dashboard Button Styles */
+.btn-primary {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #2980b9, #3498db);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+} 

@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Welcome, {{ current_user.username }}!</h2>
+    
+    <div class="row">
+        <!-- New Order Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-plus-circle fa-4x text-success mb-3"></i>
+                    <h3 class="card-title">Create New Order</h3>
+                    <p class="card-text">Create a new order for customers with menu items</p>
+                    <a href="{{ url_for('employee.create_order') }}" class="btn btn-success btn-lg">
+                        <i class="fas fa-plus me-2"></i>New Order
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Orders Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-list-alt fa-4x text-primary mb-3"></i>
+                    <h3 class="card-title">View Orders</h3>
+                    <p class="card-text">View and manage existing orders</p>
+                    <a href="{{ url_for('employee.view_orders') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-eye me-2"></i>View Orders
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Orders Section -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h3>Recent Orders</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in recent_orders %}
+                        <tr>
+                            <td>{{ order.orderID }}</td>
+                            <td>{{ order.customer.name }}</td>
+                            <td>₹{{ "%.2f"|format(order.totalAmount) }}</td>
+                            <td>
+                                <span class="badge {% if order.status == 'Pending' %}bg-warning{% else %}bg-success{% endif %}">
+                                    {{ order.status }}
+                                </span>
+                            </td>
+                            <td>
+                                <a href="{{ url_for('employee.view_order_details', order_id=order.orderID) }}" 
+                                   class="btn btn-info btn-sm">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Pending Orders</h5>
+                    <h2 class="card-text">{{ stats.pending_count }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Completed Today</h5>
+                    <h2 class="card-text">{{ stats.completed_today }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Sales Today</h5>
+                    <h2 class="card-text">₹{{ "%.2f"|format(stats.total_sales_today) }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

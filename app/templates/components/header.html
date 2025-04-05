@@ -1,0 +1,38 @@
+<!-- Header Navigation -->
+<div class="container-fluid bg-light border-bottom mb-4">
+    <div class="container py-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                {% if current_user.is_authenticated %}
+                    {% if current_user.role == 'Admin' %}
+                        <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Admin Dashboard
+                        </a>
+                    {% elif current_user.role == 'Employee' %}
+                        <a href="{{ url_for('employee.dashboard') }}" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Employee Dashboard
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ url_for('auth.choose_role') }}" class="btn btn-primary">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                {% endif %}
+            </div>
+            <div class="text-center">
+                <h4 class="mb-0">{{ page_title|default('Restaurant Management System') }}</h4>
+            </div>
+            <div>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('auth.choose_role') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Create New Order</h2>
+    <form method="POST" id="orderForm">
+        <!-- Customer Details -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Customer Details</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="customer_name">Name</label>
+                    <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer_email">Email</label>
+                    <input type="email" class="form-control" id="customer_email" name="customer_email" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer_phone">Phone</label>
+                    <input type="tel" class="form-control" id="customer_phone" name="customer_phone" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Menu Items</h4>
+            </div>
+            <div class="card-body">
+                <div id="menuItems">
+                    <div class="row menu-item mb-3">
+                        <div class="col-md-6">
+                            <select class="form-control" name="items[]" required>
+                                <option value="">Select Item</option>
+                                {% for item in menu_items %}
+                                <option value="{{ item.menuItemID }}" data-price="{{ item.price }}">
+                                    {{ item.name }} - ${{ "%.2f"|format(item.price) }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control quantity" name="quantities[]" min="1" value="1" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger remove-item">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" id="addItem">Add Another Item</button>
+            </div>
+        </div>
+
+        <!-- Total Amount -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4>Total Amount: $<span id="totalAmount">0.00</span></h4>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Order</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuItems = document.getElementById('menuItems');
+    const addItemBtn = document.getElementById('addItem');
+    const totalAmountSpan = document.getElementById('totalAmount');
+
+    // Add new item row
+    addItemBtn.addEventListener('click', function() {
+        const newItem = menuItems.children[0].cloneNode(true);
+        newItem.querySelector('select').value = '';
+        newItem.querySelector('.quantity').value = 1;
+        menuItems.appendChild(newItem);
+        updateTotal();
+    });
+
+    // Remove item row
+    menuItems.addEventListener('click', function(e) {
+        if (e.target.classList.contains('remove-item')) {
+            if (menuItems.children.length > 1) {
+                e.target.closest('.menu-item').remove();
+                updateTotal();
+            }
+        }
+    });
+
+    // Update total when quantities or items change
+    menuItems.addEventListener('change', function(e) {
+        if (e.target.classList.contains('quantity') || e.target.name === 'items[]') {
+            updateTotal();
+        }
+    });
+
+    // Calculate total amount
+    function updateTotal() {
+        let total = 0;
+        const rows = menuItems.children;
+        for (let row of rows) {
+            const select = row.querySelector('select');
+            const quantity = row.querySelector('.quantity');
+            if (select.value) {
+                const price = parseFloat(select.options[select.selectedIndex].dataset.price);
+                total += price * parseInt(quantity.value);
+            }
+        }
+        totalAmountSpan.textContent = total.toFixed(2);
+    }
+});
+</script>
+{% endblock %} 
